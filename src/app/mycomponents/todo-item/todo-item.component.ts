@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/Todo';
+import { TodoService } from '../todo.service';
+
 
 @Component({
   selector: 'app-todo-item',
@@ -10,32 +12,41 @@ import { Todo } from 'src/app/Todo';
 export class TodoItemComponent implements OnInit {
 
   todos:Todo[];
-  localItem:string|null
-  constructor() { 
-    this.localItem = localStorage.getItem("todos");
-    
-    if(this.localItem==null){
-      this.todos = []
-    }else{
-      this.todos = JSON.parse(this.localItem)
-    }
-      
-    
+  constructor(private todoService:TodoService) {
+    this.todos = [];
+        
   }
 
   ngOnInit(): void {
+    this.todoService.getAllTodos().subscribe((response)=> {
+      console.log(response)
+      this.todos = response;
+    })
   }
 
   deleteTodo(todo:Todo){
-    const index = this.todos.indexOf(todo)
-    this.todos.splice(index,1)
-    localStorage.setItem("todos",JSON.stringify(this.todos))
+    this.todoService.deleteTodo(todo.id).subscribe(
+      ()=>{
+        this.ngOnInit()
+      }
+    );
+    
+    // localStorage.setItem("todos",JSON.stringify(this.todos))
+  
+    
   }
   
   addTodo(todo:Todo){
-    console.log(todo)
-    this.todos.push(todo)
-    localStorage.setItem("todos",JSON.stringify(this.todos))
+    //this.todos.push(todo)
+    //localStorage.setItem("todos",JSON.stringify(this.todos))
+
+    this.todoService.addTodo(todo).subscribe(
+      ()=>{
+        this.ngOnInit()
+      }
+    );
+    
+
   }
   toggleTodo(todo:Todo){
     const index = this.todos.indexOf(todo)

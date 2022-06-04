@@ -7,6 +7,8 @@ import { TodoItemComponent } from './mycomponents/todo-item/todo-item.component'
 import { DisplayTodoComponent } from './mycomponents/display-todo/display-todo.component';
 import { AddTodoComponent } from './mycomponents/add-todo/add-todo.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from  '@angular/common/http';
+
 
 
 
@@ -20,7 +22,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

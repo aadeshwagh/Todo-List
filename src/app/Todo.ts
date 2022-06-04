@@ -1,6 +1,7 @@
 export class Todo{
-    srno!:number
+    id!:number
     title!:string
-    desc!:string
+    description!:string
     active!:boolean
 }
+

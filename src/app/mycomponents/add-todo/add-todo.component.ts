@@ -8,7 +8,7 @@ import { Todo } from 'src/app/Todo';
 })
 export class AddTodoComponent implements OnInit {
   title!:string
-  desc!:string
+  description!:string
   @Output() addTodo:EventEmitter<Todo> = new EventEmitter();
   constructor() { }
 
@@ -16,9 +16,9 @@ export class AddTodoComponent implements OnInit {
   }
   onSubmit(){
     const todo = {
-      srno: 8,
+      id: 8,
       title:this.title,
-      desc:this.desc,
+      description:this.description,
       active:true
     }
     this.addTodo.emit(todo)

@@ -10,7 +10,7 @@ import { Todo } from 'src/app/Todo';
 export class DisplayTodoComponent implements OnInit {
 
   @Input() todo! :Todo
-  @Output() todoDelete:EventEmitter<Todo> = new EventEmitter();
+  @Output() Todoelete:EventEmitter<Todo> = new EventEmitter();
   @Output() todoCheckBox:EventEmitter<Todo> = new EventEmitter();
   constructor() {
     
@@ -19,7 +19,7 @@ export class DisplayTodoComponent implements OnInit {
   ngOnInit(): void {
   }
   onClick(todo:Todo){
-    this.todoDelete.emit(todo)
+    this.Todoelete.emit(todo)
     console.log("delete is presed")
   }
   onCheckboxClick(todo:Todo){
